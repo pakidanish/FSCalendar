@@ -18,11 +18,22 @@ class LoadViewExampleViewController: UIViewController, FSCalendarDataSource, FSC
         view.backgroundColor = UIColor.groupTableViewBackground
         self.view = view
         
-        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
+        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 800
         let calendar = FSCalendar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.maxY, width: self.view.bounds.width, height: height))
         calendar.dataSource = self
         calendar.delegate = self
+        calendar.scrollDirection = .vertical
+        calendar.pagingEnabled = false
+        
+        calendar.today = nil
+        calendar.clipsToBounds = true
+        calendar.appearance.weekdayTextColor = UIColor.lightGray
+        calendar.appearance.selectionColor = UIColor.purple
+        calendar.appearance.headerTitleColor = UIColor.black
+        calendar.placeholderType = .none;
         calendar.backgroundColor = UIColor.white
+        
+        
         self.view.addSubview(calendar)
         self.calendar = calendar
         
@@ -37,6 +48,10 @@ class LoadViewExampleViewController: UIViewController, FSCalendarDataSource, FSC
         if monthPosition == .previous || monthPosition == .next {
             calendar.setCurrentPage(date, animated: true)
         }
+    }
+    
+    func minimumDate(for calendar: FSCalendar) -> Date {
+        return Date()
     }
 
 }

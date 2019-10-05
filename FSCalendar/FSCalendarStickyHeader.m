@@ -37,13 +37,13 @@
         self.contentView = view;
         
         label = [[UILabel alloc] initWithFrame:CGRectZero];
-        label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentLeft;
         label.numberOfLines = 0;
         [_contentView addSubview:label];
         self.titleLabel = label;
         
         view = [[UIView alloc] initWithFrame:CGRectZero];
-        view.backgroundColor = FSCalendarStandardLineColor;
+        view.backgroundColor = UIColor.clearColor;
         [_contentView addSubview:view];
         self.bottomBorder = view;
         
@@ -69,7 +69,7 @@
     CGFloat titleHeight = [@"1" sizeWithAttributes:@{NSFontAttributeName:self.calendar.appearance.headerTitleFont}].height*1.5 + weekdayMargin*3;
     
     _bottomBorder.frame = CGRectMake(0, _contentView.fs_height-weekdayHeight-weekdayMargin*2, _contentView.fs_width, 1.0);
-    _titleLabel.frame = CGRectMake(0, _bottomBorder.fs_bottom-titleHeight-weekdayMargin, titleWidth,titleHeight);
+    _titleLabel.frame = CGRectMake(10, _bottomBorder.fs_bottom-titleHeight-weekdayMargin, titleWidth,titleHeight);
     
 }
 
